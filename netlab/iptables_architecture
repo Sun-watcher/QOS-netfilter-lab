@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+# tcp
+iptables -t mangle -A POSTROUTING -p tcp --dport 5001 -j CLASSIFY --set-class 1:10
+iptables -t mangle -A POSTROUTING -p tcp --dport 5002 -j CLASSIFY --set-class 1:20
+iptables -t mangle -A POSTROUTING -p tcp --dport 5003 -j CLASSIFY --set-class 1:30
+
+# udp
+iptables -t mangle -A POSTROUTING -p udp --dport 5001 -j CLASSIFY --set-class 1:10
+iptables -t mangle -A POSTROUTING -p udp --dport 5002 -j CLASSIFY --set-class 1:20
+iptables -t mangle -A POSTROUTING -p udp --dport 5003 -j CLASSIFY --set-class 1:30

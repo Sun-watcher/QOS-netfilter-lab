@@ -1,0 +1,5 @@
+#!/bin/bash -x
+
+iptables -t mangle -A POSTROUTING -m tos --tos 0x01 -j CLASSIFY --set-class 1:10
+iptables -t mangle -A POSTROUTING -m tos --tos 0x02 -j CLASSIFY --set-class 1:20
+iptables -t mangle -A POSTROUTING -m tos --tos 0x04 -j CLASSIFY --set-class 1:30

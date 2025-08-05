@@ -1,0 +1,8 @@
+#!/bin/bash -x
+
+modprobe -r ifb
+modprobe ifb numifbs=1
+ip link set ifb0 netns r2
+ip netns exec r2 ip link set ifb0 up
+ip netns exec r2 tc qdisc add dev r2-eth1 ingress handle ffff:
+ip netns exec r2 tc filter add dev r2-eth1 parent ffff: matchall action mirred egress redirect dev ifb0
